@@ -59,10 +59,10 @@ std::any AntoEBVisitorImpl::visitNpComp(AntoEBParser::NpCompContext *ctx)  {
     llvm::Value* second = std::any_cast<llvm::Value*>(visit(ctx->expr(1)));
     // int resp;
     if (ctx->COMP->getType() == AntoEBParser::LESS) {
-        // return std::any(builder->CreateBinOp(llvm::CodeGenOpt::Less, first, second, "compare"));
+        return std::any(builder->CreateFCmpULT(first, second, "lessThan"));
     }
     else {
-        // return std::any(builder->CreateFSub(first, second, "subTemp"));
+        return std::any(builder->CreateFSGT(first, second, "greaterThan"));
     }
 
     return visitChildren(ctx);
@@ -73,11 +73,11 @@ std::any AntoEBVisitorImpl::visitNpMulDiv(AntoEBParser::NpMulDivContext *ctx)  {
     llvm::Value* first = std::any_cast<llvm::Value*>(visit(ctx->expr(0)));
     llvm::Value* second = std::any_cast<llvm::Value*>(visit(ctx->expr(1)));
     // int resp;
-    if (ctx->OPL->getType() == AntoEBParser::ADD) {
-        return std::any(builder->CreateFAdd(first, second, "addTemp"));
+    if (ctx->OPL->getType() == AntoEBParser::MUL) {
+        return std::any(builder->CreateFMul(first, second, "addTemp"));
     }
     else {
-        return std::any(builder->CreateFSub(first, second, "subTemp"));
+        return std::any(builder->CreateFDiv(first, second, "subTemp"));
     }
     // return visitChildren(ctx);
 }

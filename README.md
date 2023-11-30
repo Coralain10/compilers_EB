@@ -20,3 +20,8 @@ else {
 ```
 ![AST](example_AST.svg "AST")
 
+## Compilar
+```
+cd compiler
+clang++ Calc.cpp $(llvm-config --cxxflags) -lLLVM-16 -IANTLRI -lantlr4-runtime && ./a.out
+```
