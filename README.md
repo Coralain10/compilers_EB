@@ -25,3 +25,9 @@ else {
 cd compiler
 clang++ Calc.cpp $(llvm-config --cxxflags) -lLLVM-16 -IANTLRI -lantlr4-runtime && ./a.out
 ```
+
+## Optimizar
+```
+llc Calc.ll -o3 Calc.arm
+llc-16 Calc.ll -o3 Calc.arm
+```
