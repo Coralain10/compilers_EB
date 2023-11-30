@@ -13,9 +13,9 @@ class  AntoEBParser : public antlr4::Parser {
 public:
   enum {
     LBRAC = 1, RBRAC = 2, LPAREN = 3, RPAREN = 4, MUL = 5, DIV = 6, ADD = 7, 
-    SUB = 8, DDOT = 9, COMP = 10, AND = 11, OR = 12, INB = 13, EQ = 14, 
-    COMMA = 15, IF = 16, ELSE = 17, RETURN = 18, PRINT = 19, NEWLINE = 20, 
-    NUMBER = 21, ID = 22, WS = 23
+    SUB = 8, DDOT = 9, LESS = 10, GREAT = 11, AND = 12, OR = 13, INB = 14, 
+    EQ = 15, COMMA = 16, IF = 17, ELSE = 18, RETURN = 19, PRINT = 20, NEWLINE = 21, 
+    NUMBER = 22, ID = 23, WS = 24
   };
 
   enum {
@@ -157,10 +157,13 @@ public:
   public:
     NpCompContext(CompContext *ctx);
 
-    std::vector<antlr4::tree::TerminalNode *> COMP();
-    antlr4::tree::TerminalNode* COMP(size_t i);
+    antlr4::Token *COMP = nullptr;
     std::vector<ExprContext *> expr();
     ExprContext* expr(size_t i);
+    std::vector<antlr4::tree::TerminalNode *> LESS();
+    antlr4::tree::TerminalNode* LESS(size_t i);
+    std::vector<antlr4::tree::TerminalNode *> GREAT();
+    antlr4::tree::TerminalNode* GREAT(size_t i);
     std::vector<antlr4::tree::TerminalNode *> AND();
     antlr4::tree::TerminalNode* AND(size_t i);
     std::vector<antlr4::tree::TerminalNode *> OR();

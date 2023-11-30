@@ -3,7 +3,9 @@
 #include "llvm/ADT/APFloat.h"
 #include "llvm/IR/Constant.h"
 #include "llvm/IR/Constants.h"
+#include "llvm/IR/Instruction.h"
 #include "llvm/IR/Value.h"
+#include "llvm/Support/CodeGen.h"
 #include <any>
 #include <llvm/IR/IRBuilder.h>
 #include <llvm/IR/LLVMContext.h>
@@ -52,13 +54,24 @@ std::any AntoEBVisitorImpl::visitBlank(AntoEBParser::BlankContext *ctx)  {
 
 std::any AntoEBVisitorImpl::visitNpComp(AntoEBParser::NpCompContext *ctx)  {
     std::cout << "visitNpComp" << std::endl;
+    
+    llvm::Value* first = std::any_cast<llvm::Value*>(visit(ctx->expr(0)));
+    llvm::Value* second = std::any_cast<llvm::Value*>(visit(ctx->expr(1)));
+    // int resp;
+    if (ctx->COMP->getType() == AntoEBParser::LESS) {
+        // return std::any(builder->CreateBinOp(llvm::CodeGenOpt::Less, first, second, "compare"));
+    }
+    else {
+        // return std::any(builder->CreateFSub(first, second, "subTemp"));
+    }
+
     return visitChildren(ctx);
 }
 
 std::any AntoEBVisitorImpl::visitNpMulDiv(AntoEBParser::NpMulDivContext *ctx)  {
     std::cout << "visitNpMulDiv" << std::endl;
     llvm::Value* first = std::any_cast<llvm::Value*>(visit(ctx->expr(0)));
-    llvm::Value* second = std::any_cast<llvm::Value*>(visit(ctx->expr(0)));
+    llvm::Value* second = std::any_cast<llvm::Value*>(visit(ctx->expr(1)));
     // int resp;
     if (ctx->OPL->getType() == AntoEBParser::ADD) {
         return std::any(builder->CreateFAdd(first, second, "addTemp"));
@@ -72,7 +85,7 @@ std::any AntoEBVisitorImpl::visitNpMulDiv(AntoEBParser::NpMulDivContext *ctx)  {
 std::any AntoEBVisitorImpl::visitNpAddSub(AntoEBParser::NpAddSubContext *ctx)  {
     std::cout << "visitNpAddSub" << std::endl;
     llvm::Value* first = std::any_cast<llvm::Value*>(visit(ctx->expr(0)));
-    llvm::Value* second = std::any_cast<llvm::Value*>(visit(ctx->expr(0)));
+    llvm::Value* second = std::any_cast<llvm::Value*>(visit(ctx->expr(1)));
     // int resp;
     if (ctx->OPH->getType() == AntoEBParser::ADD) {
         return std::any(builder->CreateFAdd(first, second, "addTemp"));

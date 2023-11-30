@@ -10,7 +10,7 @@ statement
        | ifElseStruct              #ifElseStat
        | NEWLINE                   # blank
        ;
-comp   :   COMP expr expr ((AND|OR) COMP expr expr)*    #NpComp
+comp   :   COMP=(LESS | GREAT) expr expr ((AND|OR) COMP=(LESS | GREAT) expr expr)*    #NpComp
        ;
 expr   :   OPL=(MUL|DIV) expr expr #NpMulDiv
        |   OPH=(ADD|SUB) expr expr #NpAddSub
@@ -38,7 +38,8 @@ ADD: '+' ;
 SUB: '-' ;
 
 DDOT   : ':';
-COMP   :   '<' | '>';
+LESS   :   '<';
+GREAT  :   '>';
 AND    : '&&';
 OR     : '||';
 INB    : '..';
