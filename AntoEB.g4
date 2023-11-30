@@ -1,4 +1,4 @@
-grammar anto_eb;
+grammar AntoEB;
 
 // Parser Rules
 program: (statement)* EOF;
