@@ -18,7 +18,7 @@ int main(int argc, char**argv) {
     antlr4::CommonTokenStream tokens(&lexer);
     AntoEBParser parser(&tokens);
     auto tree = parser.program();
-    // EvalVisitorImpl eval;
-    // eval.visitProg(tree);
+    AntoEBVisitorImpl eval;
+    eval.visitProgram(tree);
     std::cout << tree ->toStringTree(true) << std::endl;
 }

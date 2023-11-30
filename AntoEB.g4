@@ -8,7 +8,7 @@ statement
        | PRINT expr NEWLINE        #printStat
        | ID '=' expr               #assign
        | ifElseStruct              #ifElseStat
-	| NEWLINE                   # blank
+       | NEWLINE                   # blank
        ;
 comp   :   COMP expr expr ((AND|OR) COMP expr expr)*    #NpComp
        ;
