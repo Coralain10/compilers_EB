@@ -2,28 +2,26 @@ grammar AntoEB;
 
 // Parser Rules
 program: (statement)* EOF;
-statement : expr NEWLINE
-       | RETURN expr NEWLINE
-       | PRINT expr NEWLINE
-       | ID '=' expr 
-       | ifElseStat
+statement
+       : expr NEWLINE              #exprStat
+       | RETURN expr NEWLINE       #returnStat
+       | PRINT expr NEWLINE        #printStat
+       | ID '=' expr               #assign
+       | ifElseStruct              #ifElseStat
+	| NEWLINE                   # blank
        ;
-fCall  :   ID LPAREN expr? (COMMA expr)* RPAREN
+comp   :   COMP expr expr ((AND|OR) COMP expr expr)*    #NpComp
        ;
-comp   :   COMP expr expr
-             ((AND|OR) COMP expr expr)*
-       ;
-expr   :   OPL=(ADD|SUB) expr expr
-       |   OPH=(MUL|DIV) expr expr
-       |   ID
-       |   NUMBER
-       |   fCall
+expr   :   OPL=(MUL|DIV) expr expr #NpMulDiv
+       |   OPH=(ADD|SUB) expr expr #NpAddSub
+       |   ID                      # Id
+       |   NUMBER                  # Number
        ;
 
-ifStat      : IF comp LBRAC statement+ RBRAC NEWLINE?;
-ifelseStat  : ELSE IF comp LBRAC statement+ RBRAC NEWLINE?;
-elseStat    : ELSE LBRAC statement+ RBRAC NEWLINE?;
-ifElseStat  : ifStat (ifelseStat)* (elseStat)?;
+if      : IF comp LBRAC statement+ RBRAC NEWLINE?;
+ifelse  : ELSE IF comp LBRAC statement+ RBRAC NEWLINE?;
+else    : ELSE LBRAC statement+ RBRAC NEWLINE?;
+ifElseStruct  : if (ifelse)* (else)?;
 
 // ================================================
 
@@ -56,6 +54,4 @@ NEWLINE: '\r'? '\n';
 NUMBER : [+-]?([0-9]*[.])?[0-9]+ ;
 ID     : [a-zA-Z_][a-zA-Z0-9]*;
 WS     : [ \t\r\n\f]+ -> skip ;
-
-
 

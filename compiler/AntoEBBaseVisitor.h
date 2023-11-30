@@ -19,35 +19,63 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitStatement(AntoEBParser::StatementContext *ctx) override {
+  virtual std::any visitExprStat(AntoEBParser::ExprStatContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual std::any visitFCall(AntoEBParser::FCallContext *ctx) override {
+  virtual std::any visitReturnStat(AntoEBParser::ReturnStatContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual std::any visitComp(AntoEBParser::CompContext *ctx) override {
+  virtual std::any visitPrintStat(AntoEBParser::PrintStatContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual std::any visitExpr(AntoEBParser::ExprContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitIfStat(AntoEBParser::IfStatContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitIfelseStat(AntoEBParser::IfelseStatContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitElseStat(AntoEBParser::ElseStatContext *ctx) override {
+  virtual std::any visitAssign(AntoEBParser::AssignContext *ctx) override {
     return visitChildren(ctx);
   }
 
   virtual std::any visitIfElseStat(AntoEBParser::IfElseStatContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitBlank(AntoEBParser::BlankContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitNpComp(AntoEBParser::NpCompContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitNpMulDiv(AntoEBParser::NpMulDivContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitNpAddSub(AntoEBParser::NpAddSubContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitId(AntoEBParser::IdContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitNumber(AntoEBParser::NumberContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitIf(AntoEBParser::IfContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitIfelse(AntoEBParser::IfelseContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitElse(AntoEBParser::ElseContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitIfElseStruct(AntoEBParser::IfElseStructContext *ctx) override {
     return visitChildren(ctx);
   }
 

@@ -21,21 +21,35 @@ public:
    */
     virtual std::any visitProgram(AntoEBParser::ProgramContext *context) = 0;
 
-    virtual std::any visitStatement(AntoEBParser::StatementContext *context) = 0;
+    virtual std::any visitExprStat(AntoEBParser::ExprStatContext *context) = 0;
 
-    virtual std::any visitFCall(AntoEBParser::FCallContext *context) = 0;
+    virtual std::any visitReturnStat(AntoEBParser::ReturnStatContext *context) = 0;
 
-    virtual std::any visitComp(AntoEBParser::CompContext *context) = 0;
+    virtual std::any visitPrintStat(AntoEBParser::PrintStatContext *context) = 0;
 
-    virtual std::any visitExpr(AntoEBParser::ExprContext *context) = 0;
-
-    virtual std::any visitIfStat(AntoEBParser::IfStatContext *context) = 0;
-
-    virtual std::any visitIfelseStat(AntoEBParser::IfelseStatContext *context) = 0;
-
-    virtual std::any visitElseStat(AntoEBParser::ElseStatContext *context) = 0;
+    virtual std::any visitAssign(AntoEBParser::AssignContext *context) = 0;
 
     virtual std::any visitIfElseStat(AntoEBParser::IfElseStatContext *context) = 0;
+
+    virtual std::any visitBlank(AntoEBParser::BlankContext *context) = 0;
+
+    virtual std::any visitNpComp(AntoEBParser::NpCompContext *context) = 0;
+
+    virtual std::any visitNpMulDiv(AntoEBParser::NpMulDivContext *context) = 0;
+
+    virtual std::any visitNpAddSub(AntoEBParser::NpAddSubContext *context) = 0;
+
+    virtual std::any visitId(AntoEBParser::IdContext *context) = 0;
+
+    virtual std::any visitNumber(AntoEBParser::NumberContext *context) = 0;
+
+    virtual std::any visitIf(AntoEBParser::IfContext *context) = 0;
+
+    virtual std::any visitIfelse(AntoEBParser::IfelseContext *context) = 0;
+
+    virtual std::any visitElse(AntoEBParser::ElseContext *context) = 0;
+
+    virtual std::any visitIfElseStruct(AntoEBParser::IfElseStructContext *context) = 0;
 
 
 };
